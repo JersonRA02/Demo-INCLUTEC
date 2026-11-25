@@ -25,12 +25,12 @@ export const cultures: Culture[] = [
         answer: 0,
       },
       {
-        text: "¿Qué significa inti?",
+        text: "¿Qué significa inti en quechua?",
         options: ["Montaña", "Sol", "Luna"],
         answer: 1,
       },
       {
-        text: "¿Cómo podemos valorar una lengua originaria?",
+        text: "¿Cómo podemos valorar el quechua y el aimara?",
         options: [
           "Burlándonos del acento",
           "Imponiendo una sola lengua",
@@ -234,12 +234,8 @@ export const surveyItems = [
   "Actúo cuando observo una situación de exclusión.",
 ];
 export const sampleResponses = [
-  [4, 4, 3, 3, 4, 5, 4, 3],
-  [5, 4, 4, 4, 5, 4, 4, 4],
-  [3, 4, 4, 3, 4, 4, 3, 4],
-  [4, 5, 4, 4, 4, 5, 4, 4],
-  [4, 3, 5, 4, 5, 4, 4, 3],
-  [5, 4, 4, 5, 4, 4, 5, 4],
+[3,4,4,2,5,4,3,3],[4,3,4,3,4,4,4,3],[3,4,5,3,5,4,3,3],
+[4,4,4,3,4,4,4,3],[3,3,4,3,5,3,4,3],[3,4,4,3,4,4,3,4]
 ];
 export type Post = {
   id: string;

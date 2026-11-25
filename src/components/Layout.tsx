@@ -89,15 +89,6 @@ export function Layout({
         Saltar al contenido
       </a>
       <AccessibilityBar />
-      <button
-        className="mobile-toggle"
-        aria-label={open ? "Cerrar navegación" : "Abrir navegación"}
-        aria-expanded={open}
-        aria-controls="sidebar"
-        onClick={() => setOpen(!open)}
-      >
-        <Icon name={open ? "x" : "menu"} />
-      </button>
       <aside id="sidebar" className={`sidebar ${open ? "is-open" : ""}`}>
         <Link to="/" className="brand">
           <span className="brand-mark">
@@ -159,6 +150,16 @@ export function Layout({
       )}
       <div className="app-body">
         <header className="topbar">
+      <button
+        className="mobile-toggle"
+        aria-label={open ? "Cerrar navegación" : "Abrir navegación"}
+        aria-expanded={open}
+        aria-controls="sidebar"
+        onClick={() => setOpen(!open)}
+      >
+        <Icon name={open ? "x" : "menu"} />
+      </button>
+
           <div className="breadcrumb">
             Mi espacio <Icon name="chevron" size={14} />
             <strong>

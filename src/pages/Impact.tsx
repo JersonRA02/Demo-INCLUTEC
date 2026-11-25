@@ -135,7 +135,7 @@ export function Impact() {
                   interval={0}
                   stroke="var(--muted)"
                 />
-                <YAxis domain={[0, 5]} stroke="var(--muted)" />
+                <YAxis domain={[0, 5]} ticks={[0,1,2,3,4,5]} allowDecimals={false} stroke="var(--muted)" />
                 <Tooltip
                   contentStyle={{
                     background: "var(--surface)",
@@ -164,7 +164,7 @@ export function Impact() {
             aria-label="Gráfico radar de ocho ítems; datos completos en la tabla inferior"
           >
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={data} outerRadius="65%">
+              <RadarChart data={data} outerRadius="55%" margin={{top:28,right:36,bottom:28,left:36}}>
                 <PolarGrid />
                 <PolarAngleAxis
                   dataKey="name"
@@ -173,7 +173,7 @@ export function Impact() {
                 <PolarRadiusAxis
                   domain={[0, 5]}
                   tickCount={6}
-                  tick={{ fill: "var(--muted)", fontSize: 10 }}
+                  tick={false} axisLine={false}
                 />
                 <Radar
                   name="Promedio"
@@ -228,8 +228,7 @@ export function Impact() {
           a tu experiencia.
         </p>
         <div className="likert-key">
-          1 · Totalmente en desacuerdo &nbsp; 2 · En desacuerdo &nbsp; 3 ·
-          Neutral &nbsp; 4 · De acuerdo &nbsp; 5 · Totalmente de acuerdo
+          <span>1 · Totalmente en desacuerdo</span><span>2 · En desacuerdo</span><span>3 · Neutral</span><span>4 · De acuerdo</span><span>5 · Totalmente de acuerdo</span>
         </div>
         {surveyItems.map((q, i) => (
           <fieldset className="likert-row" key={q}>

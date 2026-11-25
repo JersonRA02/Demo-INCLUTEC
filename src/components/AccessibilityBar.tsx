@@ -9,6 +9,7 @@ export function AccessibilityBar() {
     contrast: false,
     font: false,
   });
+  const [expanded, setExpanded] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [message, setMessage] = useState("");
   const location = useLocation();
@@ -58,14 +59,16 @@ export function AccessibilityBar() {
   }
   return (
     <div
-      className="access-bar"
+      className={`access-bar ${expanded ? "expanded" : ""}`}
+ onKeyDown={(e) => { if(e.key === "Escape") {setExpanded(false);document.getElementById("access-toggle")?.focus();} }}
       role="region"
       aria-label="Herramientas de accesibilidad"
     >
+      <button id="access-toggle" className="access-toggle" aria-expanded={expanded} aria-controls="access-panel" onClick={() => setExpanded(!expanded)}><Icon name="accessibility" />Accesibilidad</button>
       <span className="access-title">
         <Icon name="accessibility" size={19} /> Un espacio para todos
       </span>
-      <div className="access-controls">
+      <div id="access-panel" className="access-controls">
         <span className="sr-only">Tamaño del texto: {prefs.size}%</span>
         <button
           aria-label="Reducir tamaño de letra"
@@ -99,7 +102,7 @@ export function AccessibilityBar() {
           aria-pressed={prefs.dark}
           onClick={() => setPrefs({ ...prefs, dark: !prefs.dark })}
         >
-          <Icon name={prefs.dark ? "sun" : "moon"} size={18} />
+          <Icon name={prefs.dark ? "sun" : "moon"} size={18} /><span className="mobile-control-label">Modo oscuro</span>
         </button>
         <label className="font-select">
           <span className="sr-only">Tipografía</span>

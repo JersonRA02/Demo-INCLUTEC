@@ -17,6 +17,7 @@ export function Home({
     "inclutec-scores",
     {},
   );
+  const [practices] = useLocalStorage<number[]>("inclutec-practices", []);
   const complete = Object.keys(scores).length;
   return (
     <>
@@ -34,7 +35,7 @@ export function Home({
           </span>
         }
       />
-      <section className="hero">
+      {!dashboard && <section className="hero">
         <div className="hero-copy">
           <span className="hero-kicker">
             <span /> DIFERENTES HISTORIAS, UN MISMO FUTURO
@@ -112,7 +113,14 @@ export function Home({
           </div>
           <div className="art-ground" />
         </div>
-      </section>
+      </section>}
+      {dashboard && (
+        <div className="role-switch" role="status">
+          <span>Estás explorando como <strong>{role ?? "visitante"}</strong>.</span>
+          <Link to="/" className="button secondary">Cambiar a estudiante o docente</Link>
+          {role === "Docente" && <Link to="/docente" className="button">Ir al espacio docente</Link>}
+        </div>
+      )}
       {!dashboard ? (
         <section className="role-panel" aria-labelledby="role-title">
           <div>
@@ -154,8 +162,8 @@ export function Home({
           <div>
             <IconTile name="book" />
             <span>
-              <strong>{complete} de 6</strong>
-              <small>Experiencias completadas</small>
+              <strong>{role === "Docente" ? practices.length : complete} de 6{role === "Docente" ? " prácticas marcadas" : ""}</strong>
+              <small>{role === "Docente" ? "Mi práctica inclusiva" : "Experiencias completadas"}</small>
             </span>
           </div>
           <div>
@@ -174,6 +182,7 @@ export function Home({
           </div>
         </div>
       )}
+      {dashboard && <>
       <section className="module-section">
         <div className="section-heading">
           <div>
@@ -223,6 +232,7 @@ export function Home({
         </div>
         <span className="outlined-badge">ODS 4 · Educación inclusiva</span>
       </section>
+      </>}
       <DemoNotice />
     </>
   );
